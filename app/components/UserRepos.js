@@ -1,29 +1,32 @@
-var React = require('react');
+import React from 'react';
 
-var UserRepos = React.createClass({
-  getInitialState: function () {
-    return {
+class UserRepos extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
       reposCount: 0,
-    };
-  },
-  componentWillReceiveProps: function(props) {
+    }
+  }
+
+  componentWillReceiveProps(props) {
     this.setState({
       reposCount: props.repos.length
     });
-  },
-  render: function(){
-    var repos = this.props.repos.map(function(repos, key){
+  }
+
+  render(){
+    const repos = this.props.repos.map(function(repos, key){
       return (
         <div key={key} className="thumbnail">
           <div className="caption">
-            <h3>{repo.name}
-              <span className="badge">{repo.stargazers_count} STARS</span>
+            <h3>{repos.name}
+              <span className="badge">{repos.stargazers_count} STARS</span>
             </h3>
-            <p>{repo.description}</p>
+            <p>{repos.description}</p>
             <p>
-              <a href={repo.html_url} className="btn btn-primary" role="button">Repository</a>
-              <a href={repo.html_url + '/issues'} className="btn btn-default" role="button">Issues</a>
+              <a href={repos.html_url} className="btn btn-primary" role="button">Repository</a>
             </p>
+              <a href={repos.html_url + '/issues'} className="btn btn-default" role="button">Issues</a>
           </div>
         </div>
       );
@@ -36,6 +39,6 @@ var UserRepos = React.createClass({
       </div>
     );
   }
-});
+};
 
-module.exports = UserRepos;
+export default UserRepos;
